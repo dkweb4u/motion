@@ -4,55 +4,40 @@
     <title>Accelerometer Example</title>
 
     <style>
-        .box{
-            width: 100%;
-            height: 100dvh;
-            border: 2px solid red;
-            position: relative;
-            padding: 25px;
-            background: #000;
-        }
-        .cricle{
-            height: 100px;
-            width: 100px;
-            background: blueviolet;
-            position: sticky;
-            border-radius: 50%;
-        }
+     *{
+        color: #fff;
+        font-size: 24px ;
+        line-height: 32px;
+        text-align: center;
+     }
+     #acceleration{
+        padding: 25px;
+     }
 
     </style>
 </head>
 <body>
 
-    <div class="box">
-    <div class="cricle">
+  <div id="acceleration">
 
-    </div>    
-    </div>
+  </div>
 
 
 
-    <script>
-           window.addEventListener("devicemotion", handleOrientationEvent, true);
+<script>
+            window.addEventListener("devicemotion", handleMotionEvent, true);
 
-
-           
-function handleOrientationEvent(event) {
+function handleMotionEvent(event) {
     const acceleration = event.accelerationIncludingGravity;
-            const accelerationX = acceleration.x;
-            const accelerationY = acceleration.y;
-            const accelerationZ = acceleration.z;
+    const accelerationX = acceleration.x;
+    const accelerationY = acceleration.y;
+    const accelerationZ = acceleration.z;
 
-    
-    const orientationElement = document.querySelector(".cricle");
-
-    orientationElement.style.top=accelerationX + "px";;
-    orientationElement.style.left=accelerationY + "px";
-
+    const accelerationElement = document.getElementById("acceleration");
+    accelerationElement.textContent = `<br> X: ${accelerationX} <br>, Y: ${accelerationY}<br>, Z: ${accelerationZ}`;
 }
 
-    </script>
-
+</script>
 
 </body>
 </html>
