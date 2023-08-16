@@ -15,7 +15,7 @@
         .cricle{
             height: 100px;
             width: 100px;
-            background: gold;
+            background: blueviolet;
             position: sticky;
             border-radius: 50%;
         }
@@ -33,20 +33,21 @@
 
 
     <script>
-           window.addEventListener("deviceorientation", handleOrientationEvent, true);
+           window.addEventListener("devicemotion", handleOrientationEvent, true);
 
 
            
 function handleOrientationEvent(event) {
-    const alpha = event.alpha;
-    const beta = event.beta;
-    const gamma = event.gamma;
+    const acceleration = event.accelerationIncludingGravity;
+            const accelerationX = acceleration.x;
+            const accelerationY = acceleration.y;
+            const accelerationZ = acceleration.z;
 
     
     const orientationElement = document.querySelector(".cricle");
 
-    orientationElement.style.top=event.alpha + "px";;
-    orientationElement.style.left=event.beta + "px";
+    orientationElement.style.top=accelerationX + "px";;
+    orientationElement.style.left=accelerationY + "px";
 
 }
 
