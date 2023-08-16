@@ -7,7 +7,13 @@
     <h1>Accelerometer Example</h1>
     <p id="acceleration"></p>
 
+    <hr>
+    <h1>Device Orientation Example</h1>
+    <p id="orientation"></p>
+
     <script>
+
+
         window.addEventListener("devicemotion", handleMotionEvent, true);
 
         function handleMotionEvent(event) {
@@ -19,6 +25,19 @@
             const accelerationElement = document.getElementById("acceleration");
             accelerationElement.textContent = `X: ${accelerationX}, Y: ${accelerationY}, Z: ${accelerationZ}`;
         }
+
+
+        window.addEventListener("deviceorientation", handleOrientationEvent, true);
+
+function handleOrientationEvent(event) {
+    const alpha = event.alpha;
+    const beta = event.beta;
+    const gamma = event.gamma;
+
+    const orientationElement = document.getElementById("orientation");
+    orientationElement.textContent = `Alpha: ${alpha.toFixed(2)}, Beta: ${beta.toFixed(2)}, Gamma: ${gamma.toFixed(2)}`;
+}
+
     </script>
 </body>
 </html>
