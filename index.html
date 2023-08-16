@@ -22,7 +22,7 @@
         width: 100px;
         height: 100px;
         border-radius: 50%;
-        background: red;
+        background: pink;
         position: sticky;
      }
 
@@ -47,7 +47,7 @@ function handleMotionEvent(event) {
 
     const accelerationElement = document.getElementById("acceleration");
 
-    accelerationElement.style.top = ( accelerationY * 10) + "%";
+    accelerationElement.style.top = ( accelerationZ * 10) + "%";
     accelerationElement.style.left = (accelerationX * 10) + "%";
     // accelerationElement.textContent = `<br> X: ${accelerationX} <br>, Y: ${accelerationY}<br>, Z: ${accelerationZ}`;
 }
