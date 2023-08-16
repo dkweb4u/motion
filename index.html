@@ -1,58 +1,69 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Accelerometer Example</title>
+<html lang="en">
 
-    <style>
-     *{
-        color: #fff;
-        font-size: 24px ;
-        line-height: 32px;
-        text-align: center;
-        background: #000;
-        box-sizing: border-box; 
-    }
-     #acceleration{
-        padding: 25px;
-        height: 100dvh;
-        width: 100%;
-        position: relative;
-     }
-     .ball{
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        background: pink;
-        position: sticky;
-     }
+<style>
+    body {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.rectangle {
+  width: 100px;
+  height: 200px;
+  position: absolute;
+  top: 10%;
+  left: calc(50% - 50px);
+  opacity: 0.5;
+}
+#mobileRectangle {
+  transform-origin: center center;
+}
+#mobileRectangle img {
+  width: 100%;
+  height: 100%;
+}
+a {
+display:block;
+}
+</style>
 
-    </style>
-</head>
 <body>
-
-  <div id="acceleration">
- <div class="ball"></div>
+  <h1>DeviceOrientation & DeviceMotion API </h1>
+  <h4>Only for mobile and tablet</h4>
+  <p>Roulis (Roll): <span id="rollValue">0</span></p>
+  <p>Inclinaison (Pitch): <span id="pitchValue">0</span></p>
+  <div id="container">
+    <div class="rectangle" id="mobileRectangle"><img src="data:image/png;base64,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"></div>
   </div>
 
+  <script>
+function handleOrientation(event) {
+  const roll = event.gamma;
+  const pitch = event.beta;
 
+  document.getElementById("rollValue").textContent = roll.toFixed(2);
+  document.getElementById("pitchValue").textContent = pitch.toFixed(2);
 
-<script>
-            window.addEventListener("devicemotion", handleMotionEvent, true);
-
-function handleMotionEvent(event) {
-    const acceleration = event.accelerationIncludingGravity;
-    const accelerationX = acceleration.x;
-    const accelerationY = acceleration.y;
-    const accelerationZ = acceleration.z;
-
-    const accelerationElement = document.getElementById("acceleration");
-
-    accelerationElement.style.top = ( accelerationZ * 10) + "%";
-    accelerationElement.style.left = (accelerationX * 10) + "%";
-    // accelerationElement.textContent = `<br> X: ${accelerationX} <br>, Y: ${accelerationY}<br>, Z: ${accelerationZ}`;
+  const mobileRectangle = document.getElementById("mobileRectangle");
+  mobileRectangle.style.transform = `rotateX(${pitch}deg) rotateY(${roll}deg)`;
 }
 
-</script>
+if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
+  window.addEventListener("deviceorientation", handleOrientation);
+} else {
+  alert(
+    "Sorry, your browser does not support the DeviceOrientation and/or DeviceMotion API."
+  );
+}
+
+  </script>
+  <!-- <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent">https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent</a>
+    <a style="bottom:30px" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent">https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent</a> -->
 
 </body>
+
 </html>
