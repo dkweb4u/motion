@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <script>
+
+
+        window.addEventListener("devicemotion", handleMotionEvent, true);
+
+        function handleMotionEvent(event) {
+            const acceleration = event.accelerationIncludingGravity;
+            const accelerationX = acceleration.x;
+            const accelerationY = acceleration.y;
+            const accelerationZ = acceleration.z;
+
+            const accelerationElement = document.getElementById("acceleration");
+            accelerationElement.textContent = `X: ${accelerationX}, Y: ${accelerationY}, Z: ${accelerationZ}`;
+        }
+
+
+        window.addEventListener("deviceorientation", handleOrientationEvent, true);
+
+function handleOrientationEvent(event) {
+    const alpha = event.alpha;
+    const beta = event.beta;
+    const gamma = event.gamma;
+
+
+
+    const orientationElement = document.getElementById("orientation");
+    orientationElement.textContent = `Alpha: ${alpha.toFixed(2)}, Beta: ${beta.toFixed(2)}, Gamma: ${gamma.toFixed(2)}`;
+}
+
+    </script>
+</body>
+</html>
