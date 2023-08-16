@@ -34,8 +34,10 @@ function handleOrientationEvent(event) {
     const beta = event.beta;
     const gamma = event.gamma;
 
+
+
     const orientationElement = document.getElementById("orientation");
-    orientationElement.textContent = `Alpha: ${alpha.toFixed(2)}, Beta: ${beta.toFixed(2)}, Gamma: ${gamma.toFixed(2)}`;
+    orientationElement.textContent = `Alpha: ${alpha.toFixed(2)}, Beta: ${beta.toFixed(2)}, Gamma: ${gamma.toFixed(2)}, MAx: ${alpha.max()}`;
 }
 
     </script>
