@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accelerometer Example</title>
+</head>
+<body>
+    <h1>Accelerometer Example</h1>
+    <p id="acceleration"></p>
+
+    <script>
+        window.addEventListener("devicemotion", handleMotionEvent, true);
+
+        function handleMotionEvent(event) {
+            const acceleration = event.accelerationIncludingGravity;
+            const accelerationX = acceleration.x;
+            const accelerationY = acceleration.y;
+            const accelerationZ = acceleration.z;
+
+            const accelerationElement = document.getElementById("acceleration");
+            accelerationElement.textContent = `X: ${accelerationX}, Y: ${accelerationY}, Z: ${accelerationZ}`;
+        }
+    </script>
+</body>
+</html>
